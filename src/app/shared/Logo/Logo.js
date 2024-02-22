@@ -20,7 +20,7 @@ const Logo = ({ mini, mode, sx }) => {
               margin: "0 auto",
             }}
           >
-            <a href="https://www.echt.com" target="_blank">
+            <a href="https://echt.im/" target="_blank">
               {" "}
               <img
                 src={mode === "light" ? echtlogo : echtdark}

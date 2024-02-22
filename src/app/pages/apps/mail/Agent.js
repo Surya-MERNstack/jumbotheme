@@ -43,7 +43,7 @@ import "jspdf-autotable";
 import { PersonAdd } from "@mui/icons-material";
 import * as XLSX from "xlsx";
 import "./Agent.css";
-import profile from "../../../../assets/images/img/photo3.jpg"
+import profile from "../../../../assets/images/img/photo3.jpg";
 // Styled component for Span
 const Item = styled(Span)(({ theme }) => ({
   padding: theme.spacing(0, 1),
@@ -361,78 +361,40 @@ const Agent = () => {
 
   const data = {
     // Worksheet named animals
-    Client: [
-      {
-        Active: "active",
-        Username: "Tomi",
-        Email: "ah@smthing.co.com",
-        Plan: "month",
-        Address: "",
-        Description: "testing...",
-      },
-      {
-        Active: "Inactive",
-        Username: "Labes",
-        Email: "rl@smthing.co.com",
-        Plan: "year",
-        Address: "",
-        Description: "testing...",
-      },
-      {
-        Active: "active",
-        Username: "Yezzi",
-        Email: "ymin@cocococo.com",
-        Plan: "year",
-        Address: "",
-        Description: "testing...",
-      },
-    ],
-    // Worksheet named pokemons
-    Agent: [
-      { Active: "active", name: "Tom", category: "pokemon" },
-      { Active: "Inactive", name: "Chan", category: "pokemon" },
-      { Active: "active", name: "charlie", category: "pokemon" },
-    ],
+    Agent: AgentDetails.agent?.map((data) => [
+      data.Active,
+      data.Username,
+      data.Client,
+      data.Email,
+      data.agents,
+      data.plan,
+      data.Address,
+      data.Supervisor,
+    ]),
   };
 
   // Define csvData
   const csvData = [
-    [
-      "Active",
-      "username",
-      "Names",
-      "Email",
-      "Overdraft",
-      "Plan",
-      "Address",
-      "Description",
-    ],
-    ["active", "Ahmed", "Tomi", "ah@smthing.co.com", "year", "", "testing...."],
-    [
-      "Inactive",
-      "Raed",
-      "Labes",
-      "rl@smthing.co.com",
-      "month",
-      "",
-      "testing....",
-    ],
-    [
-      "active",
-      "Yezzi",
-      "Min l3b",
-      "ymin@cocococo.com",
-      "year",
-      "",
-      "testing....",
-    ],
+    AgentDetails.agent?.map((data) => [
+      data.Active,
+      data.Username,
+      data.Client,
+      data.Email,
+      data.agents,
+      data.plan,
+      data.Address,
+      data.Supervisor,
+    ]),
   ];
 
   // export csv format
   const exportToCSV = () => {
     const csvContent =
       "data:text/csv;charset=utf-8," +
-      csvData.map((row) => row.join(",")).join("\n");
+      csvData
+        .flat()
+        .map((row) => row.join(","))
+        .join("\n");
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -450,28 +412,25 @@ const Agent = () => {
       "Active",
       "Username",
       "Email",
-      "Plan",
       "Names",
-      "Overdraft",
+      "Mobile",
       "Address",
-      "Description",
+      "Supervisor",
     ];
 
     const rows = AgentDetails.agent?.map((data) => [
-      data.active,
+      data.Active,
       data.Username,
-      data.email,
-      data.agents,
-      data.plan,
-      data.names,
-      data.overdraft,
-      data.address,
-      data.description,
+      data.Email,
+      data.Client,
+      data.Mobile,
+      data.Address,
+      data.Supervisor,
     ]);
 
     pdf.autoTable({
       head: [columns],
-      body: [rows],
+      body: rows,
       startY: 30,
     });
 
@@ -636,7 +595,11 @@ const Agent = () => {
                       <Avatar
                         name={"profile_pic"}
                         alt={"user profile pic"}
-                        src={postUserDetails.avatar ?  postUserDetails.avatar : profile}
+                        src={
+                          postUserDetails.avatar
+                            ? postUserDetails.avatar
+                            : profile
+                        }
                         sx={{
                           width: 60,
                           height: 60,
@@ -938,11 +901,9 @@ const Agent = () => {
                     }
                   />
                 </Stack>
-
-             
               </CustomTabPanel>
               <CustomTabPanel value={value} index={1}>
-              <Stack direction={"row"} spacing={3} marginTop={"-2rem"}>
+                <Stack direction={"row"} spacing={3} marginTop={"-2rem"}>
                   <TextField
                     fullWidth
                     value={postUserDetails.address}
@@ -979,7 +940,7 @@ const Agent = () => {
                   />
                 </Stack>
               </CustomTabPanel>
-          
+
               <Div
                 sx={{
                   pl: 2,
@@ -1460,7 +1421,7 @@ const Agent = () => {
                     variant="contained"
                     startIcon={<SearchIcon />}
                     sx={{
-                      width: "100%",
+                      width: "90%",
                       borderRadius: "5px",
                       background: "#00bf63",
                       color: "white",
@@ -1469,7 +1430,8 @@ const Agent = () => {
                         background: "green",
                       },
                     }}
-                    onClick={handleSearchButtonClick}
+                    // onClick={handleSearchButtonClick}
+                    onClick={() => window.location.reload()}
                   >
                     Search
                   </Button>
