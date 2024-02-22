@@ -1,0 +1,8 @@
+body{
+    background-image: url('../../../../assets/images/img/whatsup1.jpg');
+}
+
+
+#status:focus{
+ border: 2px solid red;
+}
