@@ -6,7 +6,7 @@ import JumboApp from "@jumbo/components/JumboApp";
 import AppLayout from "./AppLayout";
 import JumboTheme from "@jumbo/components/JumboTheme";
 import AppRoutes from "./AppRoutes";
-import configureStore, { history } from "./redux/store";
+import configureStore, { history } from "./redux/store"; 
 import JumboDialog from "@jumbo/components/JumboDialog";
 import JumboDialogProvider from "@jumbo/components/JumboDialog/JumboDialogProvider";
 import { SnackbarProvider } from "notistack";

@@ -61,12 +61,12 @@ const menus = [
                 type: "nav-item",
                 icon: <DashboardIcon sx={{fontSize: 20}}/>
             },
-            {
-                uri: "/dashboards/clients",
-                label: 'Clients',
-                type: "nav-item",
-                icon: <GroupsIcon sx={{fontSize: 20}}/>
-            },
+            // {
+            //     uri: "/dashboards/clients",
+            //     label: 'Clients',
+            //     type: "nav-item",
+            //     icon: <GroupsIcon sx={{fontSize: 20}}/>
+            // },
             {
                 uri: "/dashboards/listing",
                 label: 'Channels',
